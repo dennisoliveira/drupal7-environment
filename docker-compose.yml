@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: dennisoliveira/drupal7
-    container_name: drupal7-web
+    container_name: ${WEB_CONTAINER_NAME}
     tty: true
     volumes:
       - ./www:/var/www/
@@ -17,7 +17,7 @@ services:
 
   db:
     image: mysql:5.7.23
-    container_name: drupal7-db
+    container_name: ${MYSQL_CONTAINER_NAME}
     volumes:
       - ./config/mycustom.cnf:/etc/mysql/conf.d/custom.cnf
       - ./db:/var/lib/mysql
