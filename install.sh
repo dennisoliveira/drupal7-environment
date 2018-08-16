@@ -23,9 +23,23 @@ wget https://raw.githubusercontent.com/dennisoliveira/drupal7-environment/master
 chmod a+w www/drupal-7.59/sites/default && \
 chmod a+w www/drupal-7.59/sites/default/settings.php
 
+# Definir Endereço de rede inicial
+read -p "IP inicial (172.21).......: " network_ip
+read -p "Nome do container Web.....: " container_web
+read -p "Nome do container MySQL...: " container_mysql
+
+echo "Network IP......: $network_ip.0.0"
+echo "Web IP..........: $network_ip.0.5"
+echo "MySQL IP........: $network_ip.0.6"
+echo "Container Web...: $container_web"
+echo "Container MySQL.: $container_mysql"
+
+sed -i "s/172.21/$network_ip/g" .env
+sed -i "s/172.21/$network_ip/g" www/drupal-7.59/sites/default/settings.php
+sed -i "s/drupal7-web/$container_web/g" .env
+sed -i "s/drupal7-db/$container_mysql/g" .env
+
 # Levantar ambiente
 docker-compose up -d
 
 echo "Ambiente drupal 7 finalizado.\n"
-
-
