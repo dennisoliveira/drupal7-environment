@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dennisoliveira/drupal7
+    container_name: drupal7-web
+    tty: true
+    volumes:
+      - ./www:/var/www/
+      - ./config/000-default.conf:/etc/apache2/sites-available/000-default.conf
+    networks:
+      default:
+        ipv4_address: ${WEB_IP}
+
+  db:
+    image: mysql:5.7.23
+    container_name: drupal7-db
+    volumes:
+      - ./config/mycustom.cnf:/etc/mysql/conf.d/custom.cnf
+      - ./db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_DATABASE=drupal
+    networks:
+      default:
+        ipv4_address: ${MYSQL_IP}
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: ${NETWORK_CONFIG_SUBNET}
