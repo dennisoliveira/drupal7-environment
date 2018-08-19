@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Gerando ambiente drupal 7...\n"
+echo "Gerando ambiente drupal 7..."
 
 # Obter arquivos de configuração do docker
 wget https://raw.githubusercontent.com/dennisoliveira/drupal7-environment/master/.env
@@ -42,4 +42,4 @@ sed -i "s/drupal7-db/$container_mysql/g" .env
 # Levantar ambiente
 docker-compose up -d
 
-echo "Ambiente drupal 7 finalizado.\n"
+echo "Ambiente drupal 7 finalizado."
