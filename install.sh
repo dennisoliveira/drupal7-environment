@@ -23,6 +23,8 @@ wget https://raw.githubusercontent.com/dennisoliveira/drupal7-environment/master
 chmod a+w www/drupal-7.59/sites/default && \
 chmod a+w www/drupal-7.59/sites/default/settings.php
 
+clear
+
 # Definir Endereço de rede inicial
 read -p "IP inicial (172.21).......: " network_ip
 read -p "Nome do container Web.....: " container_web
