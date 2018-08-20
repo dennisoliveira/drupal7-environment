@@ -43,3 +43,4 @@ sed -i "s/drupal7-db/$container_mysql/g" .env
 docker-compose up -d
 
 echo "Ambiente drupal 7 finalizado."
+echo "http://$network_ip.0.5/install.php?profile=standard&locale=en&op=start&id=1"
